@@ -51,7 +51,7 @@ This branch now includes a GitHub Actions workflow:
 
 It automatically:
 1. checks out the branch
-2. creates a clean worktree from `origin/master`
+2. creates a clean worktree from the bundle's pinned base commit
 3. runs `apply.mjs` against that clean tree
 4. runs `verify.mjs` against that clean tree
 
@@ -60,6 +60,7 @@ So pushes to the bundle branch and manual workflow dispatches will re-validate t
 ## Notes
 - The `assets/` directory now contains the real implementation, tests, docs, and bridge scripts.
 - `apply.mjs` copies those assets into a clean checkout, with base-hash checks for replaced upstream files.
+- `manifest.json` pins the expected upstream base commit for the bundle.
 - `verify.mjs` assumes the bundle has already been applied and then runs targeted tests plus the smoke flow.
 - `build-hostinger-overlay.mjs` applies the bundle to a clean checkout, builds Paperclip there, and prepares a minimal overlay image on top of `ghcr.io/hostinger/hvps-paperclip:latest`.
 - `supportopia-remote-pr-ops.sh` is environment-specific to the current Supportopia VPS layout.

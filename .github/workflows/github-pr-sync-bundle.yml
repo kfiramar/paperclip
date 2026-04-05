@@ -31,10 +31,22 @@ jobs:
           node-version: 24
           cache: pnpm
 
-      - name: Create clean apply target from origin/master
+      - name: Resolve bundle base commit
+        id: bundle-base
         run: |
-          git fetch origin master
-          git worktree add --detach "$RUNNER_TEMP/paperclip-apply-target" origin/master
+          COMMIT=$(python3 - <<'PY'
+import json
+from pathlib import Path
+m = json.loads(Path("patches/github-pr-sync/manifest.json").read_text())
+print(m.get("baseCommit", "origin/master"))
+PY
+          )
+          echo "commit=$COMMIT" >> "$GITHUB_OUTPUT"
+
+      - name: Create clean apply target from bundle base
+        run: |
+          git fetch origin master --tags
+          git worktree add --detach "$RUNNER_TEMP/paperclip-apply-target" "${{ steps.bundle-base.outputs.commit }}"
 
       - name: Apply native JS bundle
         run: node patches/github-pr-sync/apply.mjs "$RUNNER_TEMP/paperclip-apply-target"
