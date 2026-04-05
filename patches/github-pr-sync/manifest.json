@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "sourceCommit": "13ee516e",
+  "files": [
+    {
+      "target": "docs/guides/board-operator/github-pr-collaboration.md",
+      "asset": "patches/github-pr-sync/assets/docs/guides/board-operator/github-pr-collaboration.md",
+      "executable": false,
+      "kind": "create"
+    },
+    {
+      "target": "packages/shared/src/constants.ts",
+      "asset": "patches/github-pr-sync/assets/packages/shared/src/constants.ts",
+      "executable": false,
+      "baseSha256": "773afbb161ac9b56331e3e67a50e869d0ce9f01a653f637703f72bbd45ca48c4",
+      "kind": "replace"
+    },
+    {
+      "target": "packages/shared/src/index.ts",
+      "asset": "patches/github-pr-sync/assets/packages/shared/src/index.ts",
+      "executable": false,
+      "baseSha256": "14295460774c473ec3baea536cab76990f266d0fd666220afb6fa8aa737ef48a",
+      "kind": "replace"
+    },
+    {
+      "target": "packages/shared/src/validators/github-pr-sync.ts",
+      "asset": "patches/github-pr-sync/assets/packages/shared/src/validators/github-pr-sync.ts",
+      "executable": false,
+      "kind": "create"
+    },
+    {
+      "target": "packages/shared/src/validators/index.ts",
+      "asset": "patches/github-pr-sync/assets/packages/shared/src/validators/index.ts",
+      "executable": false,
+      "baseSha256": "82e3e27fc215b31dc61ef07d2687ca31231b5bb247e09bb48c688352a553334f",
+      "kind": "replace"
+    },
+    {
+      "target": "scripts/github-pr-sync.mjs",
+      "asset": "patches/github-pr-sync/assets/scripts/github-pr-sync.mjs",
+      "executable": true,
+      "kind": "create"
+    },
+    {
+      "target": "scripts/github-pr-webhook-bridge.mjs",
+      "asset": "patches/github-pr-sync/assets/scripts/github-pr-webhook-bridge.mjs",
+      "executable": true,
+      "kind": "create"
+    },
+    {
+      "target": "server/src/__tests__/approvals-service.test.ts",
+      "asset": "patches/github-pr-sync/assets/server/src/__tests__/approvals-service.test.ts",
+      "executable": false,
+      "baseSha256": "82ca96336bc4519c1b7b8218d8ca3f1fdb4d8ae45865a5b7d78691c5954321e5",
+      "kind": "replace"
+    },
+    {
+      "target": "server/src/__tests__/github-pr-sync-routes.test.ts",
+      "asset": "patches/github-pr-sync/assets/server/src/__tests__/github-pr-sync-routes.test.ts",
+      "executable": false,
+      "kind": "create"
+    },
+    {
+      "target": "server/src/__tests__/github-pr-sync-service.test.ts",
+      "asset": "patches/github-pr-sync/assets/server/src/__tests__/github-pr-sync-service.test.ts",
+      "executable": false,
+      "kind": "create"
+    },
+    {
+      "target": "server/src/app.ts",
+      "asset": "patches/github-pr-sync/assets/server/src/app.ts",
+      "executable": false,
+      "baseSha256": "a8e19fb06db3945224fddfc95fc989dc3b15c8df54e912664d0b04ccaeac492c",
+      "kind": "replace"
+    },
+    {
+      "target": "server/src/routes/github-pr-sync.ts",
+      "asset": "patches/github-pr-sync/assets/server/src/routes/github-pr-sync.ts",
+      "executable": false,
+      "kind": "create"
+    },
+    {
+      "target": "server/src/services/approvals.ts",
+      "asset": "patches/github-pr-sync/assets/server/src/services/approvals.ts",
+      "executable": false,
+      "baseSha256": "4a73b91cb0ac5a859200382393eff6fbf3b43ddcbafdcfcb70eebee5ff0d98bc",
+      "kind": "replace"
+    },
+    {
+      "target": "server/src/services/github-pr-sync.ts",
+      "asset": "patches/github-pr-sync/assets/server/src/services/github-pr-sync.ts",
+      "executable": false,
+      "kind": "create"
+    }
+  ]
+}
