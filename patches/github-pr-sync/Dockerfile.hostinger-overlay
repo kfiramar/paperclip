@@ -1,0 +1,21 @@
+FROM ghcr.io/hostinger/hvps-paperclip:latest
+
+# CLI entrypoint bundle
+COPY overlay/cli/dist/index.js /usr/local/lib/node_modules/paperclipai/dist/index.js
+
+# Server runtime overrides
+COPY overlay/server/dist/app.js /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/server/dist/app.js
+COPY overlay/server/dist/routes/github-pr-sync.js /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/server/dist/routes/github-pr-sync.js
+COPY overlay/server/dist/services/github-pr-sync.js /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/server/dist/services/github-pr-sync.js
+COPY overlay/server/dist/services/approvals.js /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/server/dist/services/approvals.js
+
+# Shared runtime overrides
+COPY overlay/shared/dist/constants.js /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/shared/dist/constants.js
+COPY overlay/shared/dist/index.js /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/shared/dist/index.js
+COPY overlay/shared/dist/validators/index.js /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/shared/dist/validators/index.js
+COPY overlay/shared/dist/validators/github-pr-sync.js /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/shared/dist/validators/github-pr-sync.js
+
+# Runtime helper scripts for mounted /paperclip data volumes
+COPY overlay/scripts/github-pr-sync.mjs /usr/local/share/paperclip/github-pr-sync.mjs
+COPY overlay/scripts/github-pr-webhook-bridge.mjs /usr/local/share/paperclip/github-pr-webhook-bridge.mjs
+
