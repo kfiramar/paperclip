@@ -1,0 +1,43 @@
+name: github-pr-sync-bundle
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/github-pr-sync-control-plane
+    paths:
+      - "patches/github-pr-sync/**"
+      - ".github/workflows/github-pr-sync-bundle.yml"
+
+jobs:
+  verify-bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Create clean apply target from origin/master
+        run: |
+          git fetch origin master
+          git worktree add --detach "$RUNNER_TEMP/paperclip-apply-target" origin/master
+
+      - name: Apply native JS bundle
+        run: node patches/github-pr-sync/apply.mjs "$RUNNER_TEMP/paperclip-apply-target"
+
+      - name: Verify native JS bundle
+        run: node patches/github-pr-sync/verify.mjs "$RUNNER_TEMP/paperclip-apply-target"
