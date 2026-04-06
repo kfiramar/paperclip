@@ -32,6 +32,10 @@ node patches/github-pr-sync/verify.mjs /path/to/paperclip-checkout
 node patches/github-pr-sync/deploy-supportopia-remote.mjs root@187.124.171.224
 ```
 
+The Supportopia remote helper also enforces reviewer authority:
+- `Code Reviewer` may submit GitHub `APPROVE` / `REQUEST_CHANGES`
+- `QA Lead` and `Release Manager` should comment, not approve
+
 ### Build a Hostinger-base overlay image
 ```bash
 node patches/github-pr-sync/build-hostinger-overlay.mjs /path/to/clean-paperclip-checkout --image paperclipai-patched:github-pr-sync-overlay
